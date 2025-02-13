@@ -15,6 +15,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, class
 from yellowbrick.classifier import ConfusionMatrix
 
 class Modelo:
+
     def __init__(self, model_type="SVC", **kwargs):
         """
         Inicializa o modelo de acordo com o tipo especificado.
@@ -31,7 +32,7 @@ class Modelo:
         """
         Define o modelo com base no tipo fornecido.
         Parametros:
-        - model_type (str): Tipo de modelo. Pode ser "SVC", 
+        - model_type (str): Tipo de modelo. Pode ser "SVC",
         "LinearRegression", "DecisionTree" ou "RandomForest".
         """
         if self.model_type == "SVC":
@@ -134,10 +135,10 @@ class Modelo:
         elif isinstance(self.model, LinearRegression):
             print("Este modelo e de regressao; metricas de classificacao nao sao aplicaveis.")
         
-        cm_display = ConfusionMatrixDisplay.from_predictions(self.y_test, self.predictions, display_labels=self.label_encoder_flor.classes_)
-        # cm_display.plot(cmap=plt.cm.Blues)
-        plt.title("Matriz de Confusao")
-        plt.show()
+        # cm_display = ConfusionMatrixDisplay.from_predictions(self.y_test, self.predictions, display_labels=self.label_encoder_flor.classes_)
+        # # cm_display.plot(cmap=plt.cm.Blues)
+        # plt.title("Matriz de Confusao")
+        # plt.show()
 
     def Train(self, path=None):
         """
@@ -159,12 +160,12 @@ class Modelo:
         self.Teste()  # Executa a avaliacao do modelo
 
 # SVM com kernel polinomial e C maior
-# modelo_svc = Modelo(model_type="SVC", C=10, kernel='poly', degree=3)
-# modelo_svc.Train(path="Data/iris.data")
+modelo_svc = Modelo(model_type="SVC", C=10, kernel='poly', degree=3)
+modelo_svc.Train(path="Data/iris.data")
 
 # # Random Forest com 200 arvores e profundidade maxima de 10
-modelo_rf = Modelo(model_type="RandomForest", n_estimators=200, max_depth=10)
-modelo_rf.Train(path="Data/iris.data")
+# modelo_rf = Modelo(model_type="RandomForest", n_estimators=200, max_depth=10)
+# modelo_rf.Train(path="Data/iris.data")
 
 # # Decision Tree com profundidade maxima de 5 e criterio de entropia
 # modelo_dt = Modelo(model_type="DecisionTree", max_depth=5, criterion='entropy')
